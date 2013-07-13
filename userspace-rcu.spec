@@ -31,7 +31,7 @@ zezwolenie na istnienie naraz wielu kopii struktur danych i śledzenie
 dostępów do tych struktur, aby wykryć okresy, kiedy możliwe jest
 odzyskanie pamięci.
 
-liburdu-cms udośtpenia wydajne struktury danych oparte na algorytmach
+liburdu-cms udostępnia wydajne struktury danych oparte na algorytmach
 RCU oraz bez blokad. Struktury te obejmują tablice haszujące, kolejki,
 stosy i listy dwukierunkowe.
 
