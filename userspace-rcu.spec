@@ -1,12 +1,12 @@
 Summary:	Userspace RCU implementation
 Summary(pl.UTF-8):	Implementacja RCU w przestrzeni użytkownika
 Name:		userspace-rcu
-Version:	0.7.7
+Version:	0.8.0
 Release:	1
 License:	LGPL v2.1+ (library), GPL v2 (tests)
 Group:		Libraries
 Source0:	http://lttng.org/files/urcu/%{name}-%{version}.tar.bz2
-# Source0-md5:	d14de3ff32eb1ab9424b258599c8a6f3
+# Source0-md5:	ddf193131b9f172c8f540b60d9d339f4
 URL:		http://lttng.org/urcu
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -79,6 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 # packaged as %doc
 %{__rm} $RPM_BUILD_ROOT%{_docdir}/userspace-rcu/{{rcu,cds,uatomic}-api.txt,ChangeLog,README}
 
+install -d $RPM_BUILD_ROOT%{_examplesdir}
+%{__mv} $RPM_BUILD_ROOT%{_docdir}/userspace-rcu/examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -89,19 +92,19 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc ChangeLog LICENSE README lgpl-relicensing.txt
 %attr(755,root,root) %{_libdir}/liburcu.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liburcu.so.1
+%attr(755,root,root) %ghost %{_libdir}/liburcu.so.2
 %attr(755,root,root) %{_libdir}/liburcu-bp.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liburcu-bp.so.1
+%attr(755,root,root) %ghost %{_libdir}/liburcu-bp.so.2
 %attr(755,root,root) %{_libdir}/liburcu-cds.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liburcu-cds.so.1
+%attr(755,root,root) %ghost %{_libdir}/liburcu-cds.so.2
 %attr(755,root,root) %{_libdir}/liburcu-common.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liburcu-common.so.1
+%attr(755,root,root) %ghost %{_libdir}/liburcu-common.so.2
 %attr(755,root,root) %{_libdir}/liburcu-mb.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liburcu-mb.so.1
+%attr(755,root,root) %ghost %{_libdir}/liburcu-mb.so.2
 %attr(755,root,root) %{_libdir}/liburcu-qsbr.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liburcu-qsbr.so.1
+%attr(755,root,root) %ghost %{_libdir}/liburcu-qsbr.so.2
 %attr(755,root,root) %{_libdir}/liburcu-signal.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liburcu-signal.so.1
+%attr(755,root,root) %ghost %{_libdir}/liburcu-signal.so.2
 
 %files devel
 %defattr(644,root,root,755)
@@ -128,6 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/liburcu-mb.pc
 %{_pkgconfigdir}/liburcu-qsbr.pc
 %{_pkgconfigdir}/liburcu-signal.pc
+%{_examplesdir}/%{name}-%{version}
 
 %files static
 %defattr(644,root,root,755)
