@@ -1,12 +1,13 @@
 Summary:	Userspace RCU implementation
 Summary(pl.UTF-8):	Implementacja RCU w przestrzeni użytkownika
 Name:		userspace-rcu
-Version:	0.9.3
+# NOTE: for 0.10.x (for lttng 2.10) see DEVEL branch
+Version:	0.9.4
 Release:	1
 License:	LGPL v2.1+ (library), GPL v2 (tests)
 Group:		Libraries
 Source0:	http://lttng.org/files/urcu/%{name}-%{version}.tar.bz2
-# Source0-md5:	920970e35a1a2066c8353eabfeab8730
+# Source0-md5:	62919b6fdcc14444424f7fd6e0fd4d39
 URL:		http://lttng.org/urcu
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -77,7 +78,7 @@ rm -rf $RPM_BUILD_ROOT
 # *.la kept - urcu-common not handled in any way in .pc files
 
 # packaged as %doc
-%{__rm} $RPM_BUILD_ROOT%{_docdir}/userspace-rcu/{{rcu,cds,uatomic}-api.md,ChangeLog,README.md}
+%{__rm} $RPM_BUILD_ROOT%{_docdir}/userspace-rcu/{{rcu,cds,uatomic}-api.md,ChangeLog,README.md,solaris-build.md}
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}
 %{__mv} $RPM_BUILD_ROOT%{_docdir}/userspace-rcu/examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
