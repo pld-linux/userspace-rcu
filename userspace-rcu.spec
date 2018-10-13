@@ -1,13 +1,13 @@
 Summary:	Userspace RCU implementation
 Summary(pl.UTF-8):	Implementacja RCU w przestrzeni użytkownika
 Name:		userspace-rcu
-Version:	0.10.0
+Version:	0.10.1
 Release:	1
 License:	LGPL v2.1+ (library), GPL v2 (tests)
 Group:		Libraries
-Source0:	http://lttng.org/files/urcu/%{name}-%{version}.tar.bz2
-# Source0-md5:	69dab85b6929c378338b9504adc6aea7
-URL:		http://lttng.org/urcu
+Source0:	https://lttng.org/files/urcu/%{name}-%{version}.tar.bz2
+# Source0-md5:	281a2f92fdc39c40ad6b76f6631fdbd7
+URL:		https://lttng.org/urcu
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
