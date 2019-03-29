@@ -7,7 +7,7 @@ License:	LGPL v2.1+ (library), GPL v2 (tests)
 Group:		Libraries
 Source0:	https://lttng.org/files/urcu/%{name}-%{version}.tar.bz2
 # Source0-md5:	7c424c5183ec009d87e0f70c23e92f1b
-URL:		https://lttng.org/urcu
+URL:		http://liburcu.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
