@@ -1,12 +1,12 @@
 Summary:	Userspace RCU implementation
 Summary(pl.UTF-8):	Implementacja RCU w przestrzeni użytkownika
 Name:		userspace-rcu
-Version:	0.10.2
+Version:	0.11.1
 Release:	1
 License:	LGPL v2.1+ (library), GPL v2 (tests)
 Group:		Libraries
 Source0:	https://lttng.org/files/urcu/%{name}-%{version}.tar.bz2
-# Source0-md5:	7c424c5183ec009d87e0f70c23e92f1b
+# Source0-md5:	91c75d5902127f94ab556ce039b369ca
 URL:		http://liburcu.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -101,6 +101,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/liburcu-common.so.6
 %attr(755,root,root) %{_libdir}/liburcu-mb.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/liburcu-mb.so.6
+%attr(755,root,root) %{_libdir}/liburcu-memb.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/liburcu-memb.so.6
 %attr(755,root,root) %{_libdir}/liburcu-qsbr.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/liburcu-qsbr.so.6
 %attr(755,root,root) %{_libdir}/liburcu-signal.so.*.*.*
@@ -114,6 +116,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/liburcu-cds.so
 %attr(755,root,root) %{_libdir}/liburcu-common.so
 %attr(755,root,root) %{_libdir}/liburcu-mb.so
+%attr(755,root,root) %{_libdir}/liburcu-memb.so
 %attr(755,root,root) %{_libdir}/liburcu-qsbr.so
 %attr(755,root,root) %{_libdir}/liburcu-signal.so
 %{_libdir}/liburcu.la
@@ -121,6 +124,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/liburcu-cds.la
 %{_libdir}/liburcu-common.la
 %{_libdir}/liburcu-mb.la
+%{_libdir}/liburcu-memb.la
 %{_libdir}/liburcu-qsbr.la
 %{_libdir}/liburcu-signal.la
 %{_includedir}/urcu
@@ -140,5 +144,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/liburcu-cds.a
 %{_libdir}/liburcu-common.a
 %{_libdir}/liburcu-mb.a
+%{_libdir}/liburcu-memb.a
 %{_libdir}/liburcu-qsbr.a
 %{_libdir}/liburcu-signal.a
