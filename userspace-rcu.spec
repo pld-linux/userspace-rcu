@@ -1,12 +1,12 @@
 Summary:	Userspace RCU implementation
 Summary(pl.UTF-8):	Implementacja RCU w przestrzeni użytkownika
 Name:		userspace-rcu
-Version:	0.12.2
-Release:	2
+Version:	0.13.1
+Release:	1
 License:	LGPL v2.1+ (library), GPL v2 (tests)
 Group:		Libraries
 Source0:	https://lttng.org/files/urcu/%{name}-%{version}.tar.bz2
-# Source0-md5:	d94347df78e3f1aa744745eb85787df5
+# Source0-md5:	eecffc78f89938424b328298d76d856f
 URL:		http://liburcu.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -92,21 +92,21 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc ChangeLog LICENSE README.md lgpl-relicensing.txt
 %attr(755,root,root) %{_libdir}/liburcu.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liburcu.so.6
+%attr(755,root,root) %ghost %{_libdir}/liburcu.so.8
 %attr(755,root,root) %{_libdir}/liburcu-bp.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liburcu-bp.so.6
+%attr(755,root,root) %ghost %{_libdir}/liburcu-bp.so.8
 %attr(755,root,root) %{_libdir}/liburcu-cds.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liburcu-cds.so.6
+%attr(755,root,root) %ghost %{_libdir}/liburcu-cds.so.8
 %attr(755,root,root) %{_libdir}/liburcu-common.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liburcu-common.so.6
+%attr(755,root,root) %ghost %{_libdir}/liburcu-common.so.8
 %attr(755,root,root) %{_libdir}/liburcu-mb.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liburcu-mb.so.6
+%attr(755,root,root) %ghost %{_libdir}/liburcu-mb.so.8
 %attr(755,root,root) %{_libdir}/liburcu-memb.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liburcu-memb.so.6
+%attr(755,root,root) %ghost %{_libdir}/liburcu-memb.so.8
 %attr(755,root,root) %{_libdir}/liburcu-qsbr.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liburcu-qsbr.so.6
+%attr(755,root,root) %ghost %{_libdir}/liburcu-qsbr.so.8
 %attr(755,root,root) %{_libdir}/liburcu-signal.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liburcu-signal.so.6
+%attr(755,root,root) %ghost %{_libdir}/liburcu-signal.so.8
 
 %files devel
 %defattr(644,root,root,755)
@@ -133,6 +133,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/liburcu-bp.pc
 %{_pkgconfigdir}/liburcu-cds.pc
 %{_pkgconfigdir}/liburcu-mb.pc
+%{_pkgconfigdir}/liburcu-memb.pc
 %{_pkgconfigdir}/liburcu-qsbr.pc
 %{_pkgconfigdir}/liburcu-signal.pc
 %{_examplesdir}/%{name}-%{version}
