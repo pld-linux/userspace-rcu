@@ -7,7 +7,6 @@ License:	LGPL v2.1+ (library), GPL v2 (tests)
 Group:		Libraries
 Source0:	https://lttng.org/files/urcu/%{name}-%{version}.tar.bz2
 # Source0-md5:	eecffc78f89938424b328298d76d856f
-Patch0:		no_examples.patch
 URL:		http://liburcu.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -62,16 +61,12 @@ Statyczne biblioteki Userspace RCU.
 
 %prep
 %setup -q
-%patch -p1
 
 %build
-%{__aclocal}
-%{__autoconf} -I m4
-%{__automake}
 %configure \
 	--disable-silent-rules
 
-%{make}
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -83,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 
 # packaged as %doc
 %{__rm} $RPM_BUILD_ROOT%{_docdir}/userspace-rcu/{{rcu,cds,uatomic}-api.md,LICENSE,README.md,solaris-build.md}
+
+install -d $RPM_BUILD_ROOT%{_examplesdir}
+%{__mv} $RPM_BUILD_ROOT%{_docdir}/userspace-rcu/examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -138,6 +136,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/liburcu-memb.pc
 %{_pkgconfigdir}/liburcu-qsbr.pc
 %{_pkgconfigdir}/liburcu-signal.pc
+%{_examplesdir}/%{name}-%{version}
 
 %files static
 %defattr(644,root,root,755)
