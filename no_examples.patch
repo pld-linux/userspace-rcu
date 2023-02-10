@@ -1,0 +1,8 @@
+--- userspace-rcu-0.13.1/doc/Makefile.am	2023-02-10 18:00:32.314848761 +0100
++++ userspace-rcu-0.13.1/doc/Makefile.am	2023-02-10 18:00:35.760848972 +0100
+@@ -1,4 +1,4 @@
+-SUBDIRS = examples
++#SUBDIRS = examples
+ 
+ dist_doc_DATA = rcu-api.md \
+ 		cds-api.md \
