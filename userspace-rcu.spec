@@ -1,13 +1,15 @@
 Summary:	Userspace RCU implementation
 Summary(pl.UTF-8):	Implementacja RCU w przestrzeni użytkownika
 Name:		userspace-rcu
-Version:	0.14.1
+Version:	0.15.2
 Release:	1
 License:	LGPL v2.1+ (library), GPL v2 (tests)
 Group:		Libraries
 Source0:	https://lttng.org/files/urcu/%{name}-%{version}.tar.bz2
-# Source0-md5:	dfeb1a6e67679f4ee4a0ac584bfd37ef
+# Source0-md5:	a65ca60b27e45a96246fe53ba4ba8896
+Patch0:		%{name}-assert.patch
 URL:		http://liburcu.org/
+BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -61,6 +63,7 @@ Statyczne biblioteki Userspace RCU.
 
 %prep
 %setup -q
+%patch -P0 -p1
 
 %build
 %configure \
@@ -74,10 +77,11 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# *.la kept - urcu-common not handled in any way in .pc files
+# obsoleted by pkg-config (liburcu-common not meant for direct use)
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/liburcu*.la
 
 # packaged as %doc
-%{__rm} $RPM_BUILD_ROOT%{_docdir}/userspace-rcu/{{rcu,cds,uatomic}-api.md,LICENSE,README.md,solaris-build.md}
+%{__rm} $RPM_BUILD_ROOT%{_docdir}/userspace-rcu/{{rcu,cds,uatomic}-api.md,LICENSE.md,README.md,solaris-build.md}
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}
 %{__mv} $RPM_BUILD_ROOT%{_docdir}/userspace-rcu/examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
@@ -90,7 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog LICENSE README.md lgpl-relicensing.txt
+%doc ChangeLog LICENSE.md README.md lgpl-relicensing.md
 %attr(755,root,root) %{_libdir}/liburcu.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/liburcu.so.8
 %attr(755,root,root) %{_libdir}/liburcu-bp.so.*.*.*
@@ -105,8 +109,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/liburcu-memb.so.8
 %attr(755,root,root) %{_libdir}/liburcu-qsbr.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/liburcu-qsbr.so.8
-%attr(755,root,root) %{_libdir}/liburcu-signal.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liburcu-signal.so.8
 
 %files devel
 %defattr(644,root,root,755)
@@ -118,15 +120,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/liburcu-mb.so
 %attr(755,root,root) %{_libdir}/liburcu-memb.so
 %attr(755,root,root) %{_libdir}/liburcu-qsbr.so
-%attr(755,root,root) %{_libdir}/liburcu-signal.so
-%{_libdir}/liburcu.la
-%{_libdir}/liburcu-bp.la
-%{_libdir}/liburcu-cds.la
-%{_libdir}/liburcu-common.la
-%{_libdir}/liburcu-mb.la
-%{_libdir}/liburcu-memb.la
-%{_libdir}/liburcu-qsbr.la
-%{_libdir}/liburcu-signal.la
 %{_includedir}/urcu
 %{_includedir}/urcu*.h
 %{_pkgconfigdir}/liburcu.pc
@@ -135,7 +128,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/liburcu-mb.pc
 %{_pkgconfigdir}/liburcu-memb.pc
 %{_pkgconfigdir}/liburcu-qsbr.pc
-%{_pkgconfigdir}/liburcu-signal.pc
 %{_examplesdir}/%{name}-%{version}
 
 %files static
@@ -147,4 +139,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/liburcu-mb.a
 %{_libdir}/liburcu-memb.a
 %{_libdir}/liburcu-qsbr.a
-%{_libdir}/liburcu-signal.a
